@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer ></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bodyConent">
+        <!-- search for a city -->
+        <section>
+            <div id="searchTab">
+                <h1>Search for a City:</h1>
+                <div>
+                    <form id="submitForm" action="submit">
+                        <input id="searchBar" type="text">
+                        <input id="smtBtn" type="button"  value="seach">
+                    </form>
+                </div>
+                
+                <!-- display past search history here -->
+                <div id="historyStorage">
+                    <!-- <div id="searchHistory">Atlanta</div>
+                    <div id="searchHistory">Denver</div>
+                    <div id="searchHistory">Seattle</div>
+                    <div id="searchHistory">San Francisco</div> -->
+
+                </div>
+            </div>
+        </section>
+        <!-- display city info -->
+
+        <section>
+            <div id="displayTab">
+                <h1 id="cityName">Name of city here:</h1>
+                <p id="temp" >Temperature here in Farenheit</p>
+                <p id="windSpeed" >Wind speed here</p>
+                <p id="humidity" >Humidity here</p>
+
+            </div>
+            <div id="fiveDayDisplay">
+                <h1>5 day weather display:</h1>
+                <div id="boxes">
+                    <div id="dayBox"></div>
+                    <div id="dayBox"></div>
+                    <div id="dayBox"></div>
+                    <div id="dayBox"></div>
+                    <div id="dayBox"></div>
+
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</body>
+</html>
