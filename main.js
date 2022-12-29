@@ -47,6 +47,8 @@ let weather = {
         console.log(name, icon, description, temp, humidity, speed);
         // update the page with given names 
         document.getElementById("cityName").innerText = "Weather in " + name;
+        document.getElementById("imageIcon").src = "http://openweathermap.org/img/wn/" + icon + ".png";
+        document.getElementById("iconDescription").innerText = description;
         document.getElementById("temp").innerText = "Temperature is " + temp + " °F"
         document.getElementById("windSpeed").innerText = "Wind speed is " + speed + " miles per hour"
         document.getElementById("humidity").innerText = "Humidity is " + humidity + "%"
