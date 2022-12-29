@@ -4,6 +4,7 @@
 const search = document.getElementById("searchBar");
 const button = document.getElementById("smtBtn");
 const searchHistory = document.getElementById("historyStorage");
+const cards = document.getElementById("boxes");
 // this counter will be the key digit for local storage reference
 let counter;
 
@@ -53,18 +54,60 @@ let weather = {
     // function that searches based on the on the input on search bar
     weatherSearch: function(city) {        
         this.fetchInfo(city);        
-    }
+    },
+     
+    fiveDayInfo: function(city) {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?&daily&units=imperial&q=${city}&appid=${this.apiKey}`)
+        .then((response) => response.json())
+        // used a console.log to check that data was parsed properly, will leave here in case I need to check again
+        // .then((data) =>console.log(data))
+        .then((data)=> this.displayFiveDay(data))
+        // handle error
+        .catch(error=> console.error(`Looks like something went wrong: ${error}`));
+
+    },
+    displayFiveDay: function(data, length) {
+        let j= 0;
+        for(let i = 0; i < 40; i+=8) {
+            const { dt_txt } = data.list[i];
+            const { temp, humidity } = data.list[i].main;
+            const { speed } = data.list[i].wind;
+            const { icon, description } = data.list[i].weather[0];
+        console.log( dt_txt, "temp: " + temp, description, icon, "humidity: " + humidity, "wind speed: " +  speed);
+
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "dayBox");
+        let date = document.createElement("p");
+        date.innerHTML += dt_txt;
+        let temperature = document.createElement("p");
+        temperature.innerHTML += "Temp: " + temp + " °F";
+        let hum = document.createElement("p");
+        hum.innerHTML += "Humidity: " + humidity + "%";
+        let windSpeed =  document.createElement("p");
+        windSpeed.innerHTML += "Wind speed:" + temp + " miles/hour";
+        
+        newDiv.append(date);
+        newDiv.append(temperature);
+        newDiv.append(hum);
+        newDiv.append(windSpeed);
+
+        cards.append(newDiv);
+
+
+    }}
 };
 
 // listener for submit button
 button.addEventListener("click", function() {
     // runs search function
     weather.weatherSearch(search.value);
+    weather.fiveDayInfo(search.value);
     //creates a new div and attributes to add to Div in history page
     let newDiv = document.createElement("div");
     newDiv.innerHTML+= search.value;
     newDiv.setAttribute("id", "searchHistory");
     searchHistory.append(newDiv);
+
     // adds items to local storage
     localStorage.setItem( counter, search.value);
     // resets the value in the search bar to blank
@@ -97,6 +140,7 @@ for (let i = 0; i < localStorage.length; i++) {
         let newSearch = event.target;
         
         weather.weatherSearch(newSearch.innerText);
+        weather.fiveDayInfo(newSearch.innerText);
     })
  });
 
