@@ -66,7 +66,13 @@ let weather = {
         .catch(error=> console.error(`Looks like something went wrong: ${error}`));
 
     },
-    displayFiveDay: function(data, length) {
+    displayFiveDay: function(data) {
+        // this checks to make sure that the cards do not keep stacking on and getting
+        // added to the div that holds the 5 day weather, and old data doesn't remain.
+        if (cards.length !=0) {
+            cards.innerHTML = "";
+        }
+
         let j= 0;
         for(let i = 0; i < 40; i+=8) {
             const { dt_txt } = data.list[i];
@@ -77,8 +83,13 @@ let weather = {
 
         let newDiv = document.createElement("div");
         newDiv.setAttribute("id", "dayBox");
-        let date = document.createElement("p");
-        date.innerHTML += dt_txt;
+        let date = document.createElement("h2");
+        // this flips the order of the info using substring and concactenating
+        date.innerHTML += dt_txt.substring(5,10)+ "-"+ dt_txt.substring(0,4);
+        let forecastIcon = document.createElement("img");
+        forecastIcon.src = "http://openweathermap.org/img/wn/" + icon + ".png";  
+        let iconDescription = document.createElement("h3");
+        iconDescription.innerHTML += description;      
         let temperature = document.createElement("p");
         temperature.innerHTML += "Temp: " + temp + " °F";
         let hum = document.createElement("p");
@@ -86,14 +97,14 @@ let weather = {
         let windSpeed =  document.createElement("p");
         windSpeed.innerHTML += "Wind speed:" + temp + " miles/hour";
         
+        // add created elements to new Div
         newDiv.append(date);
+        newDiv.append(forecastIcon);
+        newDiv.append(iconDescription);
         newDiv.append(temperature);
         newDiv.append(hum);
         newDiv.append(windSpeed);
-
         cards.append(newDiv);
-
-
     }}
 };
 

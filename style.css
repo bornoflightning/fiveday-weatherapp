@@ -25,8 +25,26 @@ body {
 
 h1, #temp, #windSpeed, #humidity {
     /* border: solid 2px var(--russian-violet); */
-    padding-left: 2rem;
+    font-family: Arial;
+    padding-left: 1rem;
     color: var(--russian-violet);
+}
+
+h2 {
+  /* border: solid 2px var(--russian-violet); */
+  font-family: Arial;
+  color: var(--russian-violet);
+}
+
+h3 {
+  font-family: Arial;
+}
+
+img {
+  size: 1rem;
+  margin-top: -1rem;
+  margin-bottom: -1.5rem;
+  margin-left: -0.5rem;
 }
 #searchTab {
     background: linear-gradient(white, white, var(--Nyanza));
@@ -149,9 +167,9 @@ h1, #temp, #windSpeed, #humidity {
     padding: 10px 20px 10px 20px;
     font-family: Arial;
     color: #ffffff;
-    font-size: 20px;
-    height: 20vh;
-    width: 20vh;
+    font-size: 12px;
+    /* height: 27vh;
+    width: 20vh; */
     margin: 1rem;
     text-decoration: none;
   }
